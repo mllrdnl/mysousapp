@@ -1,6 +1,12 @@
+"use client";
+import { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import SearchResultsList from "../components/SearchResultsList";
 import styles from "../styles/page.module.css";
 
 export default function Home() {
+  const [results, setResults] = useState([]);
+
   return (
     <main className={styles.main}>
       <div className={styles.title}>
@@ -9,18 +15,8 @@ export default function Home() {
           your decision-making kitchen assistant
         </h2>
         <div className={styles.homeBody}>
-          <div className={styles.ingSearch}>
-            <label className={styles.ingLabel}>Ingredients</label>
-
-            <input
-              type="text"
-              name="inrSearchBar"
-              placeholder="ex: black beans, rice, tomatoes..."
-            />
-            <p className={styles.subIngLabel}>
-              search & select 2 - 4 ingredients from your fridge/pantry
-            </p>
-          </div>
+          <SearchBar setResults={setResults} />
+          <SearchResultsList results={results} />
         </div>
       </div>
     </main>
